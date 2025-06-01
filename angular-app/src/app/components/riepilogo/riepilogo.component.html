@@ -1,0 +1,58 @@
+<div
+  class="relative flex size-full min-h-screen flex-col bg-white justify-between group/design-root overflow-x-hidden"
+  style='font-family: "Public Sans", "Noto Sans", sans-serif;'
+>
+  <div>
+    <div class="flex items-center bg-white p-4 pb-2 justify-between">
+      <h2 class="text-[#121417] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pl-12 pr-12">Riepilogo</h2>
+    </div>
+    <h2 class="text-[#121417] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Dettagli Lettura</h2>
+    <div class="p-4 grid grid-cols-[auto_1fr] gap-x-6 text-sm">
+      <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dde0e4] py-3">
+        <p class="text-[#677583] font-normal leading-normal">Indirizzo</p>
+        <p class="text-[#121417] font-normal leading-normal text-right">{{ readingDetails.address }}</p>
+      </div>
+      <div *ngIf="readingDetails.supplyPoint && readingDetails.supplyPoint !== 'N/A'" class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dde0e4] py-3">
+        <p class="text-[#677583] font-normal leading-normal">Punto Fornitura</p>
+        <p class="text-[#121417] font-normal leading-normal text-right">{{ readingDetails.supplyPoint }}</p>
+      </div>
+      <div *ngIf="readingDetails.meterSerialNumber && readingDetails.meterSerialNumber !== 'N/A'" class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dde0e4] py-3">
+        <p class="text-[#677583] font-normal leading-normal">Numero Serie Contatore</p>
+        <p class="text-[#121417] font-normal leading-normal text-right">{{ readingDetails.meterSerialNumber }}</p>
+      </div>
+      <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dde0e4] py-3">
+        <p class="text-[#677583] font-normal leading-normal">Lettura</p>
+        <p class="text-[#121417] font-normal leading-normal text-right">{{ readingDetails.reading }}</p>
+      </div>
+      <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dde0e4] py-3">
+        <p class="text-[#677583] font-normal leading-normal">Data</p>
+        <p class="text-[#121417] font-normal leading-normal text-right">{{ readingDetails.date }}</p>
+      </div>
+    </div>
+
+    <ng-container *ngIf="showWaterFacts && waterFactData; else noWaterFacts">
+      <h2 class="text-[#121417] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Curiosità sull'acqua</h2>
+      <h3 class="text-[#121417] text-lg font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-2 pt-4">{{ waterFactData.fact_title_after_answer }}</h3>
+      <p class="text-[#121417] text-base font-normal leading-normal pb-3 pt-1 px-4">
+        {{ waterFactData.fact_description_after_answer }}
+      </p>
+    </ng-container>
+    <ng-template #noWaterFacts>
+      <div *ngIf="!showWaterFacts" class="px-4 pt-5">
+         <p class="text-[#677583] text-sm">Nessuna curiosità sull'acqua da mostrare.</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <div>
+    <div class="flex px-4 py-3">
+      <button
+        (click)="goHome()"
+        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#d2e2f3] text-[#121417] text-base font-bold leading-normal tracking-[0.015em]"
+      >
+        <span class="truncate">Torna alla Home</span>
+      </button>
+    </div>
+    <div class="h-5 bg-white"></div>
+  </div>
+</div>
